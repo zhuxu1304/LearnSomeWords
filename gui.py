@@ -15,10 +15,10 @@ import threading
 from pygame import mixer
 import time
 
+
 class Ui_MainWindow(object):
     def __init__(self, wordlist):
         self.wordlist = wordlist
-
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -123,21 +123,20 @@ class Ui_MainWindow(object):
         filename = word + '.mp3'
         try:
             mixer.init()
-            
+
             mixer.music.load(filename)
             mixer.music.play()
 
-        
+
         except Exception as e:
             print(e)
             time.sleep(0.1)
             self.click_pronounce()
 
     def click_pronoucne_threading(self, wordlist):
-        t = threading.Thread(target = self.click_pronounce)
+        t = threading.Thread(target=self.click_pronounce)
         t.start()
-        #t.join()
-        
+        # t.join()
 
     def url_open(self, url):
         req = urllib.request.Request(url)

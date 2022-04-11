@@ -4,6 +4,7 @@ from gui import *
 import os
 import time
 
+
 class APP():
     def __init__(self):
         self.plan = Plan()
@@ -24,19 +25,16 @@ class APP():
     def myExitHandler(self):
         mixer.music.unload()
         print('worked')
-        files = os.listdir(os.path.dirname(os.path.realpath(__file__)))
+        self.listdir = os.listdir(os.path.dirname(os.path.realpath(__file__)))
+        files = self.listdir
         for file in files:
             if '.mp3' in file:
                 print(file)
                 try:
                     os.remove(file)
                 except Exception as e:
-                    print('error:',e)
+                    print('error:', e)
                 time.sleep(0.01)
-
-
-        
-                
 
 
 def import_wordlist(path):
