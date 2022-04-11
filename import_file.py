@@ -94,5 +94,5 @@ class WordlistWithPosition(Wordlist):
             self.curr_word = word
             return self.curr_word
 
-
-
+    def get_current_word(self):
+        return self.keys[self.pos]

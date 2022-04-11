@@ -1,7 +1,8 @@
 from import_file import *
 from plan import *
 from gui import *
-
+import os
+import time
 
 class APP():
     def __init__(self):
@@ -13,11 +14,29 @@ class APP():
     def run(self):
         import sys
         app = QtWidgets.QApplication(sys.argv)
+        app.aboutToQuit.connect(self.myExitHandler)
         MainWindow = QtWidgets.QMainWindow()
         ui = Ui_MainWindow(self.wordlist)
         ui.setupUi(MainWindow)
         MainWindow.show()
         sys.exit(app.exec_())
+
+    def myExitHandler(self):
+        mixer.music.unload()
+        print('worked')
+        files = os.listdir(os.path.dirname(os.path.realpath(__file__)))
+        for file in files:
+            if '.mp3' in file:
+                print(file)
+                try:
+                    os.remove(file)
+                except Exception as e:
+                    print('error:',e)
+                time.sleep(0.01)
+
+
+        
+                
 
 
 def import_wordlist(path):
@@ -32,6 +51,7 @@ if __name__ == "__main__":
     # import_wordlist('./words/CET6')
     # print(settings)
     app = APP()
+    print(123)
 
 '''
 TODO:
